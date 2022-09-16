@@ -1,6 +1,13 @@
-//Import inquirer
+//Import file system and inquirer
+const fs = require('fs');
 const inquirer = require('inquirer');
+
+//import functions and objects from other folders
+const generateHTML = require('./src/page-template');
 const Employee = require('./lib/Employee');
+
+// Employee Array
+const employeeArray = [];
 
 //Array of questions for user input
 const addEmployee = () => {
@@ -25,10 +32,36 @@ const addEmployee = () => {
             //validate
         }
     ]).then(employeeInput => {
+        //Create new object with employee information captured by inquirer
         const { name, id, email } = employeeInput;
         const employee = new Employee (name, id, email);
+        
+        //push the object into the array
+        employeeArray.push(employee);
         console.log(employee);
     })
 }
 
-addEmployee();
+const writeFile = data => {
+        fs.writeFile('./dist/index.html', data, err => {
+            // if there's an error
+            if (err) {
+              console.log(err);
+              // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function as well
+              return;
+            } else {
+                console.log("profile created");
+            }
+        })
+}
+
+addEmployee()
+    .then(employeeArray => {
+        return generateHTML(employeeArray);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .catch(err => {
+    console.log(err);
+    });
