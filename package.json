@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/tracybrtn/team-profile-generator#readme",
   "dependencies": {
-    "inquirer": "^9.1.1"
+    "inquirer": "^8.2.4"
   },
   "devDependencies": {
     "jest": "^29.0.3"
