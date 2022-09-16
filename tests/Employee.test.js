@@ -1,7 +1,6 @@
 // import Employee function
 const Employee = require('../lib/Employee.js');
 
-
 //Employee is a parent class that should have the following classes and methods
 it('creates an Employee object', () => {
     const employee = new Employee('Tracy', 8, 'email');
