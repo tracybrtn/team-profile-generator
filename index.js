@@ -5,6 +5,7 @@ const inquirer = require('inquirer');
 //import functions and objects from other folders
 const generateHTML = require('./src/page-template');
 const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
 
 // Employee Array
 const employeeArray = [];
