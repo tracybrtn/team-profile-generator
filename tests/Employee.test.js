@@ -1,5 +1,5 @@
 // import Employee function
-const Employee = require('../lib/Employee.js');
+const { Employee } = require('../lib/Employee.js');
 
 //Employee is a parent class that should have the following classes and methods
 it('creates an Employee object', () => {
@@ -36,5 +36,5 @@ it('gets email value for employee', () => {
 it('gets role value for employee', () => {
     const employee = new Employee('Tracy', 8, 'email');
 
-    expect(employee.getRole()).toBe('Employee');
+    expect(employee.getRole()).toBe(employee.role);
 })

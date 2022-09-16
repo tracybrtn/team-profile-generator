@@ -4,45 +4,33 @@ const inquirer = require('inquirer');
 
 //import functions and objects from other folders
 const generateHTML = require('./src/page-template');
-const Employee = require('./lib/Employee');
-const Manager = require('./lib/Manager');
+const { Employee, employeeQuestionsArr } = require('./lib/Employee');
+const { Manager, managerQuestionArr } = require('./lib/Manager');
 
 // Employee Array
-const employeeArray = [];
+const teamArray = [];
+
+//inquirer questions arrays
+const managerQuestions = employeeQuestionsArr.concat(managerQuestionArr);
+
 
 //Array of questions for user input
-const addEmployee = () => {
-    //that uses inquirer to .prompt questions to user
-    return inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is the name of the employee?',
-            //validate
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'What is the ID of the employee?',
-            //validate
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is the email of the employee?',
-            //validate
-        }
-    ]).then(employeeInput => {
+    
+const startApp = () => {
+    return inquirer.prompt(managerQuestions)
+    .then(managerInput => {
         //Create new object with employee information captured by inquirer
-        const { name, id, email } = employeeInput;
-        const employee = new Employee (name, id, email);
+        const { name, id, email, officeNumber} = managerInput;
+        const manager = new Manager (name, id, email, officeNumber);
         
         //push the object into the array
-        employeeArray.push(employee);
-        console.log(employee);
+        teamArray.push(manager);
+        console.log(manager);
     })
 }
 
+
+// Create index.html
 const writeFile = data => {
         fs.writeFile('./dist/index.html', data, err => {
             // if there's an error
@@ -56,9 +44,10 @@ const writeFile = data => {
         })
 }
 
-addEmployee()
-    .then(employeeArray => {
-        return generateHTML(employeeArray);
+//Start App
+startApp()
+    .then(teamArray => {
+        return generateHTML(teamArray);
     })
     .then(pageHTML => {
         return writeFile(pageHTML);
