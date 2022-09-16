@@ -4,14 +4,14 @@ const inquirer = require('inquirer');
 
 //import functions and objects from other folders
 const generateHTML = require('./src/page-template');
-const { Employee, employeeQuestionsArr } = require('./lib/Employee');
+const { Employee, employeeQuestionsArr, addEmployeeArr } = require('./lib/Employee');
 const { Manager, managerQuestionArr } = require('./lib/Manager');
 
 // Employee Array
 const teamArray = [];
 
 //inquirer questions arrays
-const managerQuestions = employeeQuestionsArr.concat(managerQuestionArr);
+const managerQuestions = employeeQuestionsArr.concat(managerQuestionArr, addEmployeeArr);
 
 
 //Array of questions for user input
@@ -26,9 +26,10 @@ const startApp = () => {
         //push the object into the array
         teamArray.push(manager);
         console.log(manager);
+        console.log(teamArray);
     })
-}
 
+}
 
 // Create index.html
 const writeFile = data => {
