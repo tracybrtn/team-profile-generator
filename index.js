@@ -18,27 +18,9 @@ const engineerQuestions = employeeQuestionsArr.concat(engineerQuestionsArr);
 const internQuestions =  employeeQuestionsArr.concat(internQuestionsArr);
 
 //EMPLOYEE ROLES FUNCTIONS
-//Function to add a team member
-const addEmployee = () => {
-    return inquirer.prompt(addEmployeeQuestions)
-    .then(function (employeeInput) {
-        // calling a function depending on the role chosen by the user
-        switch(employeeInput.role) {
-            case 'Engineer':
-                addEngineer();
-                break;
-            case 'Intern':
-                addIntern();
-                break;
-            
-            default:
-                console.log(employeeInput.role);
-        }
-    })
-}
 
-// Manager function is only called once at the beginning
-const addManager = () => {
+const startApp = () => {
+    // Manager function is only called once at the beginning
     return inquirer.prompt(managerQuestions)
     .then(managerInput => {
         //Create new object with manager information captured by inquirer
@@ -51,38 +33,54 @@ const addManager = () => {
     })
 }
 
-const addEngineer = () => {
-    return inquirer.prompt(engineerQuestions)
-    .then(engineerInput => {
-        //Create new object with engineer information captured by inquirer
-        const { name, id, email, github} = engineerInput;
-        const engineer = new Engineer (name, id, email, github);
-        
-        //push the object into the array
-        teamArray.push(engineer);
-        console.log(teamArray);
+//Function to add a team member
+const addEmployee = () => {
+    
+    // asks if user would like to add an employee
+    return inquirer.prompt(addEmployeeQuestions)
 
-        //calls the add employee function
-        addEmployee();
+     // returns role specific questions
+    .then(function (employeeInput) {
+        switch(employeeInput.role) {
+
+            //Prompts for engineer
+            case 'Engineer':
+                return inquirer.prompt(engineerQuestions)
+                .then(engineerInput => {
+                    //Create new object with engineer information captured by inquirer
+                    const { name, id, email, github} = engineerInput;
+                    const engineer = new Engineer (name, id, email, github);
+                    
+                    //push the object into the array
+                    teamArray.push(engineer);
+                    console.log(teamArray);
+
+                    //returns to initial question
+                    return addEmployee()
+                    })
+
+            //Prompts for Intern
+            case 'Intern':
+                return inquirer.prompt(internQuestions)
+                .then(internInput => {
+
+                    //Create new object with intern information captured by inquirer
+                    const { name, id, email, school} = internInput;
+                    const intern = new Intern (name, id, email, school);
+                    
+                    //push the object into the array
+                    teamArray.push(intern);
+                    console.log(teamArray);
+
+                    //returns to initial question
+                    return addEmployee()
+                })
+
+            case 'No more team members are needed.':
+                break;
+        }
     })
 }
-
-const addIntern = () => {
-    return inquirer.prompt(internQuestions)
-    .then(internInput => {
-        //Create new object with intern information captured by inquirer
-        const { name, id, email, school} = internInput;
-        const intern = new Intern (name, id, email, school);
-        
-        //push the object into the array
-        teamArray.push(intern);
-        console.log(teamArray);
-
-        //calls the add employee function
-        addEmployee();
-    })
-}
-
 // end of EMPLOYEE ROLES FUNCTIONS
 
 // Create index.html
@@ -100,12 +98,11 @@ const writeFile = data => {
 }
 
 //Start App
-addManager()
+startApp()
     .then(teamProfileData => {
         return addEmployee(teamProfileData)
-    });
-
-    /*.then(teamArray => {
+    })
+    .then(teamArray => {
         return generateHTML(teamArray);
     })
     .then(pageHTML => {
@@ -113,4 +110,4 @@ addManager()
     })
     .catch(err => {
     console.log(err);
-    });*/
+    });
