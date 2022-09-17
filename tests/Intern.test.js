@@ -1,6 +1,7 @@
 // import Employee function
 const { Intern } = require('../lib/Intern.js');
 
+
 it('creates an intern object', () => {
     const intern = new Intern('Stacy', 10, 'email', 'WashU');
 
