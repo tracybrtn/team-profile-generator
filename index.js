@@ -5,17 +5,20 @@ const inquirer = require('inquirer');
 //import functions and objects from other folders
 const generateHTML = require('./src/page-template');
 const { Employee, employeeQuestionsArr, addEmployeeArr } = require('./lib/Employee');
-const { Manager, managerQuestionArr } = require('./lib/Manager');
+const { Manager, managerQuestionsArr } = require('./lib/Manager');
+const { Engineer, engineerQuestionsArr } = require('./lib/Engineer');
+const { Intern, internQuestionsArr } = require('./lib/Intern');
 
 // Employee Array
 const teamArray = [];
 
-//inquirer questions arrays
-const managerQuestions = employeeQuestionsArr.concat(managerQuestionArr, addEmployeeArr);
+//inquirer questions arrays 
+const managerQuestions = employeeQuestionsArr.concat(managerQuestionsArr, addEmployeeArr);
+const engineerQuestions = engineerQuestionsArr.concat(addEmployeeArr);
+const internQuestions = internQuestionsArr.concat(addEmployeeArr);
 
 
 //Array of questions for user input
-    
 const startApp = () => {
     return inquirer.prompt(managerQuestions)
     .then(managerInput => {
@@ -27,6 +30,8 @@ const startApp = () => {
         teamArray.push(manager);
         console.log(manager);
         console.log(teamArray);
+        console.log(engineerQuestions);
+        console.log(internQuestions);
     })
 
 }
