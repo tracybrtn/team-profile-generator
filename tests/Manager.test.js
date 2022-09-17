@@ -16,5 +16,5 @@ it('creates a manager object', () => {
 it('gets role value for employee', () => {
     const manager = new Manager('Misty', 10, 'email.com', 896);
 
-    expect(manager.getRole()).toBe(manager.role);
+    expect(manager.getRole()).toBe('Manager');
 })

@@ -36,5 +36,5 @@ it('gets email value for employee', () => {
 it('gets role value for employee', () => {
     const employee = new Employee('Tracy', 8, 'email');
 
-    expect(employee.getRole()).toBe(employee.role);
+    expect(employee.getRole()).toBe("Employee");
 })
