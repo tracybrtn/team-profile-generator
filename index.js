@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 
 //import functions and objects from other folders
 const generateHTML = require('./src/page-template');
-const { employeeQuestionsArr, addEmployeeQuestions } = require('./lib/Employee');
+const { Employee, employeeQuestionsArr, addEmployeeQuestions } = require('./lib/Employee');
 const { Manager, managerQuestionsArr } = require('./lib/Manager');
 const { Engineer, engineerQuestionsArr } = require('./lib/Engineer');
 const { Intern, internQuestionsArr } = require('./lib/Intern');
@@ -24,12 +24,12 @@ const startApp = () => {
     return inquirer.prompt(managerQuestions)
     .then(managerInput => {
         //Create new object with manager information captured by inquirer
-        const { name, id, email, officeNumber} = managerInput;
+        const { name, id, email, officeNumber } = managerInput;
         const manager = new Manager (name, id, email, officeNumber);
         
         //push the object into the array
         teamArray.push(manager);
-        console.log(teamArray);
+        console.log(manager);
     })
 }
 
@@ -77,7 +77,7 @@ const addEmployee = () => {
                 })
 
             case 'No more team members are needed.':
-                break;
+                return generateHTML(teamArray);
         }
     })
 }
@@ -99,14 +99,9 @@ const writeFile = data => {
 
 //Start App
 startApp()
-    .then(teamProfileData => {
-        return addEmployee(teamProfileData)
-    })
-    .then(teamArray => {
-        return generateHTML(teamArray);
-    })
+    .then(addEmployee)
     .then(pageHTML => {
-        return writeFile(pageHTML);
+         return writeFile(pageHTML);
     })
     .catch(err => {
     console.log(err);
