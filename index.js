@@ -2,9 +2,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-//import functions and objects from other folders
+//import functions from other folders
 const generateHTML = require('./src/page-template');
-const { Employee, employeeQuestionsArr, addEmployeeQuestions } = require('./lib/Employee');
+
+//import Classes and Objects
+const { employeeQuestionsArr, addEmployeeQuestions } = require('./lib/Employee');
 const { Manager, managerQuestionsArr } = require('./lib/Manager');
 const { Engineer, engineerQuestionsArr } = require('./lib/Engineer');
 const { Intern, internQuestionsArr } = require('./lib/Intern');
@@ -18,7 +20,7 @@ const engineerQuestions = employeeQuestionsArr.concat(engineerQuestionsArr);
 const internQuestions =  employeeQuestionsArr.concat(internQuestionsArr);
 
 //EMPLOYEE ROLES FUNCTIONS
-
+//Starts app and captures information for team manager
 const startApp = () => {
     // Manager function is only called once at the beginning
     return inquirer.prompt(managerQuestions)
@@ -33,7 +35,7 @@ const startApp = () => {
     })
 }
 
-//Function to add a team member
+//Function to add a team member and create HTML
 const addEmployee = () => {
     
     // asks if user would like to add an employee
@@ -53,7 +55,7 @@ const addEmployee = () => {
                     
                     //push the object into the array
                     teamArray.push(engineer);
-                    console.log(teamArray);
+                    console.log(engineer);
 
                     //returns to initial question
                     return addEmployee()
@@ -70,7 +72,7 @@ const addEmployee = () => {
                     
                     //push the object into the array
                     teamArray.push(intern);
-                    console.log(teamArray);
+                    console.log(intern);
 
                     //returns to initial question
                     return addEmployee()
