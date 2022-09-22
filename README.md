@@ -50,11 +50,11 @@ GIVEN a command-line application that accepts user input
 
 ## Installation
 
-User should clone this repository from Github and download Node. From your terminal run commands `npm init` and `npm install inquirer`. Then you will be prompted a series of questions. Here is a [video demonstrating how to install and use the app.](https://watch.screencastify.com/v/j6lvUsIKGiE5r04nFVgJ)
+User should clone this repository from Github and download Node. From your terminal run commands `npm init` and `npm install inquirer`. Here is a [video demonstrating how to install and use the app.](https://watch.screencastify.com/v/j6lvUsIKGiE5r04nFVgJ)
 
 ## Usage
 
-Use inquirer from your command-line to answer questions about the members of your team. That information will be used to generate a team profile webpage. Run the following command at the root of the Team Profile Generator folder to initialize the application:  `node index.js`.
+Use inquirer from your command-line to answer questions about the members of your team. That information will be used to generate a team profile webpage. Run the following command at the root of the Team Profile Generator folder to initialize the application:  `node index.js`. Then you will be prompted a series of questions.
 
 ## License
 
