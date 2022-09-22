@@ -50,7 +50,7 @@ GIVEN a command-line application that accepts user input
 
 ## Installation
 
-User should clone this repository from Github and download Node. From your terminal run commands `npm init` and `npm install inquirer`. Then you will be prompted a series of questions.
+User should clone this repository from Github and download Node. From your terminal run commands `npm init` and `npm install inquirer`. Then you will be prompted a series of questions. Here is a [video demonstrating how to install and use the app.](https://watch.screencastify.com/v/j6lvUsIKGiE5r04nFVgJ)
 
 ## Usage
 
@@ -66,7 +66,7 @@ If you would like to contribute to this project reach out to me. You can find my
 
 ## Tests
 
-With jest installed, Run `npm test` to run Jest for tests on constructors.
+Run `npm test` to run Jest for tests on constructors.
 
 ## Questions
 
