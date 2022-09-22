@@ -23,7 +23,8 @@ const internQuestions =  employeeQuestionsArr.concat(internQuestionsArr);
 //Starts app and captures information for team manager
 const startApp = () => {
     console.log("Welcome to the Team Profile Generator! To start, please, enter manager's info.")
-    // Manager function is only called once at the beginning
+
+    // Manager questions are only displayed once at the beginning
     return inquirer.prompt(managerQuestions)
     .then(managerInput => {
         //Create new object with manager information captured by inquirer
@@ -78,7 +79,8 @@ const addEmployee = () => {
                     //returns to initial question
                     return addEmployee()
                 })
-
+            
+            // calls the next function to generate an HTML with objects in the team array
             case 'No more team members are needed.':
                 return generateHTML(teamArray);
         }

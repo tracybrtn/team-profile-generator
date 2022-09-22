@@ -46,8 +46,6 @@ const generateIntern = function(intern) {
 }
 
 generateHTML = (data) => {
-  console.log('console logging data');
-  console.log(data);
 
   //Create array for cards
   pageArr = [];
@@ -56,9 +54,6 @@ generateHTML = (data) => {
   for (let i = 0; i < data.length; i++) {
     const employee = data[i];
     const role = employee.getRole(); 
-
-    console.log('console logging employee');
-    console.log(employee);
 
       // call manager function
     if (role === 'Manager') {
@@ -84,8 +79,6 @@ generateHTML = (data) => {
     //Array needs to be stringified
     const employeeCards = pageArr.join('');
 
-    console.log('console logging employee cards');
-    console.log(employeeCards);
 
   const generateWebpage = generateTeamProfile(employeeCards);
   return generateWebpage;
