@@ -31,7 +31,6 @@ const generateEngineer = function(engineer) {
 
 const generateIntern = function(intern) {
   return `
-
 <div class="card">
     <div class="card-header">
         <h2>${intern.name}</h2>
@@ -46,41 +45,52 @@ const generateIntern = function(intern) {
 `
 }
 
-generateHTML = data => {
-  console.info(data);
+generateHTML = (data) => {
+  console.log('console logging data');
+  console.log(data);
 
-  //Create array for cards.
+  //Create array for cards
   pageArr = [];
 
-
+  // loop data 
   for (let i = 0; i < data.length; i++) {
     const employee = data[i];
     const role = employee.getRole(); 
-    console.log(employee)
+
+    console.log('console logging employee');
+    console.log(employee);
 
       // call manager function
-      if (role === 'Manager') {
-        const managerCard = generateManager(employee);
-        pageArr.push(managerCard);
-      }
+    if (role === 'Manager') {
+      const managerCard = generateManager(employee);
+
+      pageArr.push(managerCard);
+    }
 
     // call engineer function
     if (role === 'Engineer') {
       const engineerCard = generateEngineer(employee);
+
       pageArr.push(engineerCard);
     }
 
     // call intern function 
     if (role === 'Intern') {
       const internCard = generateIntern(employee);
+
       pageArr.push(internCard);
     }
-    
+  }
     //Array needs to be stringified
-    console.info(pageArr);
-    //pageArr stringified turns into employeeCards
-}
+    const employeeCards = pageArr.join('');
 
+    console.log('console logging employee cards');
+    console.log(employeeCards);
+
+  const generateWebpage = generateTeamProfile(employeeCards);
+  return generateWebpage;
+}
+const generateTeamProfile = function (employeeCards) {
       return`
       <!DOCTYPE html>
       <html lang="en">
@@ -107,7 +117,6 @@ generateHTML = data => {
       </body>
       </html>
     `
-
 }
 
 // //Generates HTML
