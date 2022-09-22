@@ -1,0 +1,47 @@
+:root {
+    --primary-color: #4258ff;
+    --secondary-color: #faf76e;
+    --tertiary-color: #f8f8e9;
+    --quaternary-color: #1a1a1a;
+    --quinary-color: #ffffff;
+
+    color: var(--quaternary-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--quaternary-color);
+    padding: 10px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.card {
+    width: 18rem;
+}
+
+.card-header {
+    background-color: var(--secondary-color);
+}
+.card-body {
+    padding: 30px 15px;
+    background-color: var(--tertiary-color);
+}
+.card-box {
+    background-color: var(--quinary-color);
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 2px 5px;
+}

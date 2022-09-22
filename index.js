@@ -99,11 +99,26 @@ const writeFile = data => {
         })
 }
 
+const copyFile = data =>
+    fs.copyFile('./src/style.css', './dist/style.css', data, err => {
+           // if there's an error
+           if (err) {
+            console.log(err);
+            // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function as well
+            return;
+          } else {
+              console.log("style sheet copied");
+          }
+    })
+
 //Start App
 startApp()
     .then(addEmployee)
     .then(pageHTML => {
          return writeFile(pageHTML);
+    })
+    .then(pageCSS => {
+        return copyFile(pageCSS);
     })
     .catch(err => {
     console.log(err);

@@ -7,7 +7,7 @@ const generateManager = function(manager) {
     </div>
     <div class="card-body">
       <div class="card-box">ID: ${manager.id}</div>
-      <div class="card-box">Email: ${manager.email}</div>
+      <div class="card-box">Email: <a href="mailto:${manager.email}">${manager.email}</a></div>
       <div class="card-box">Office Number: ${manager.officeNumber}</div>
     </div>
 </div>`
@@ -22,8 +22,8 @@ const generateEngineer = function(engineer) {
     </div>
     <div class="card-body">
       <div class="card-box">ID: ${engineer.id}</div>
-      <div class="card-box">Email: ${engineer.email}</div>
-      <div class="card-box">Github: ${engineer.github}:</div>
+      <div class="card-box">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></div>
+      <div class="card-box">Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></div>
     </div>
 </div>
 `
@@ -38,7 +38,7 @@ const generateIntern = function(intern) {
     </div>
     <div class="card-body">
       <div class="card-box">ID: ${intern.id}</div>
-      <div class="card-box">Email: ${intern.email}</div>
+      <div class="card-box">Email: <a href="mailto:${intern.email}">${intern.email}</a></div>
       <div class="card-box">School: ${intern.school}</div>
     </div>
 </div>
